@@ -7,7 +7,7 @@ function testInput()
 	var columns = document.getElementById("x-axis").value;
 	var rows = document.getElementById("y-axis").value;
 	var mines = document.getElementById("mines").value;
-	
+	var gridArea = columns*rows;
 
 	if(columns<8 || rows<8 || columns>40 || rows>30) {
 		alert("Sorry, please enter a grid size between 8x8 and 40x30.");
@@ -24,7 +24,8 @@ function testInput()
 	}
 
 	createGrid(columns, rows, mines);
-
+	setMines(mines, gridArea);
+	setNumbers();
 }
 
 function createGrid(columns, rows, mines) {
@@ -34,8 +35,6 @@ function createGrid(columns, rows, mines) {
 	var cell;
 	var i, j;
 	var cellID=1;
-	var gridArea = columns*rows;
-	this.mines = mines;
 
 	for (i=0; i<rows; i++) {
     	$newRow = $('<tr></tr>');
@@ -54,42 +53,30 @@ function createGrid(columns, rows, mines) {
         alert("row added");
 	}
 
-	var myGrid = document.getElementById("#mainGrid");
-	//var i; //index
+}
+
+function setMines(mines, gridArea) {
 	var mineLocation;
-	//var cellMinePlace = $('table').find('#' + 1);
+	var whereDaMinesAt;
+	var isMineBool = 0; //default to false
+	var mineCounter = 0;
 
-
-	for (i=0; i<mines; i++) {
+	while (mineCounter<mines) {
 		mineLocation = (Math.floor(Math.random() * gridArea));
 		cell = $('table').find('#'+mineLocation);
+
 		if (cell.hasClass("notMine")) {
 			cell.attr("class", "isMine");
-			cell.text("BOMB!");
+			cell.text("*");
+			mineCounter++;
 			//cell.attr("src", "bomb.jpg");
+			//whereDaMinesAt[i] = mineLocation;
+		}
+		else {
+			//do nothing
 		}
 		
 	}
-	//$myGrid = $("#mainGrid");
-	//placeMines(mines, gridArea, $myGrid);
 
+	//Find numbers of adjacent bombs per cell
 }
-/*function placeMines(mines, gridArea, $myGrid) {
-	var i; //index
-	var mineLocation;
-	var cell;
-
-
-	for (i=0; i<mines; i++) {
-		mineLocation = (Math.floor(Math.random() * gridArea));
-		cell = $(myGrid).getElementById(mineLocation);
-		if (cell.hasClass('isMine')) {
-			mineLocation = (Math.floor(Math.random() * gridArea));
-		}
-		else {
-			cell.setAttribute("class", "isMine");
-		}
-	}
-	
-
-}*/

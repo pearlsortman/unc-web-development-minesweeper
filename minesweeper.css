@@ -22,5 +22,6 @@ td {
 
 .isMine {
 	background-color: red;
-	color: blue;
+	color: black;
+	text-decoration: bold;
 }
