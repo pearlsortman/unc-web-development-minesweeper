@@ -1,5 +1,5 @@
 #mainGrid {
-	color: red;
+	
 }
 
 td {
@@ -22,4 +22,5 @@ td {
 
 .isMine {
 	background-color: red;
+	color: blue;
 }

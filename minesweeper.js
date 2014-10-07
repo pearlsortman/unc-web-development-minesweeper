@@ -57,24 +57,23 @@ function createGrid(columns, rows, mines) {
 	var myGrid = document.getElementById("#mainGrid");
 	//var i; //index
 	var mineLocation;
-	var cell;
+	//var cellMinePlace = $('table').find('#' + 1);
 
 
 	for (i=0; i<mines; i++) {
 		mineLocation = (Math.floor(Math.random() * gridArea));
-		cell = myGrid.getElementById(mineLocation);
-		if (cell.hasClass('isMine')) {
-			mineLocation = (Math.floor(Math.random() * gridArea));
+		cell = $('table').find('#'+mineLocation);
+		if (cell.hasClass("notMine")) {
+			cell.attr("class", "isMine");
+			cell.text("BOMB!");
+			//cell.attr("src", "bomb.jpg");
 		}
-		else {
-			cell.setAttribute("class", "isMine");
-		}
+		
 	}
 	//$myGrid = $("#mainGrid");
 	//placeMines(mines, gridArea, $myGrid);
 
 }
-
 /*function placeMines(mines, gridArea, $myGrid) {
 	var i; //index
 	var mineLocation;
